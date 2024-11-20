@@ -1,1 +1,46 @@
-<p>entry works!</p>
+<td>
+    <p-button (onClick)="op.toggle($event)" [icon]="'pi pi-' + todoToIcon(todoItem.state)" outlined></p-button>
+    <p-popover #op>
+        <p-listbox [options]="todoStates" class="w-full md:w-56" value="todo">
+            <ng-template let-item #item>
+                <div class="flex items-center gap-2">
+                    <span [class]="'pi pi-' + todoToIcon(item)"></span>
+                    <span>{{ capitalize(item) }}</span>
+                </div>
+            </ng-template>
+        </p-listbox>
+    </p-popover>
+    <!--
+    <p-select  [options]="todoStates" (onChange)="changeTodoState(row.no, $event)" class="w-min">
+        <ng-template #selectedItem let-selectedOption>
+            <div class="flex items-center gap-2" *ngIf="selectedOption">
+                <span [class]="'pi pi-' + todoToIcon(selectedOption)" style="font-size: 1rem;"></span>
+            </div>
+        </ng-template>
+        <ng-template let-item #item>
+            <div class="flex items-center gap-2">
+                <span [class]="'pi pi-' + todoToIcon(item)"></span>
+                <span>{{ capitalize(item) }}</span>
+            </div>
+        </ng-template>
+        <ng-template #dropdownicon>
+        </ng-template>
+    </p-select>
+    -->
+</td>
+<td class="w-full text-base">
+    <p-inplace>
+        <ng-template #display>
+            <span>{{ todoItem.name }}</span>
+        </ng-template>
+        <ng-template #content>
+            <div class="flex gap-2 items-center justify-center">
+                <input pInputText autocomplete="off" [value]="todoItem.name" fluid />
+                <p-button icon="pi pi-check" severity="success" />
+            </div>
+        </ng-template>
+    </p-inplace>
+</td>
+<td class="flex gap-2 justify-center items-center">
+    <p-button icon="pi pi-trash" severity="danger" (onClick)="onDelete.emit(todoItem.no)" />
+</td>

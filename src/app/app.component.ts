@@ -9,19 +9,9 @@ import { FloatLabelModule } from 'primeng/floatlabel';
 import { PopoverModule } from 'primeng/popover';
 import { ListboxModule } from 'primeng/listbox';
 import { SelectModule } from 'primeng/select';
+import { TodoItem, TodoState } from '../types/hu';
+import { EntryComponent } from './entry/entry.component';
 // import { Toast } from 'primeng/toast';
-
-enum TodoState {
-  Todo = 'todo',
-  Doing = 'doing',
-  Done = 'done',
-}
-
-interface TodoItem {
-  no: number;
-  state: TodoState;
-  name: string;
-}
 
 @Component({
   selector: 'app-root',
@@ -37,6 +27,7 @@ interface TodoItem {
     PopoverModule,
     ListboxModule,
     SelectModule,
+    EntryComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
@@ -45,11 +36,6 @@ export class AppComponent {
   title = 'todo';
   newItemName?: string;
   list: TodoItem[] = [];
-  todoStates = [
-    TodoState.Todo,
-    TodoState.Doing,
-    TodoState.Done,
-  ];
   lastId = 0;
 
   addItemButton() {
@@ -64,18 +50,5 @@ export class AppComponent {
 
   changeTodoState(no: number, event: any) {
 
-  }
-  
-  todoToIcon(state: TodoState) {
-    switch (state) {
-      case TodoState.Todo: return 'circle-off';
-      case TodoState.Doing: return 'circle-on';
-      case TodoState.Done: return 'check';
-    }
-  }
-
-  capitalize(str: string) {
-    return str.charAt(0).toUpperCase()
-      + str.slice(1);
-  }
+  }  
 }
