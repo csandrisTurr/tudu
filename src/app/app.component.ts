@@ -14,6 +14,7 @@ import { EntryComponent } from './entry/entry.component';
 import { Toolbar } from 'primeng/toolbar';
 import { IconField } from 'primeng/iconfield';
 import { InputIcon } from 'primeng/inputicon';
+import { Card } from 'primeng/card';
 // import { Toast } from 'primeng/toast';
 
 @Component({
@@ -34,6 +35,7 @@ import { InputIcon } from 'primeng/inputicon';
     Toolbar,
     IconField,
     InputIcon,
+    Card,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
