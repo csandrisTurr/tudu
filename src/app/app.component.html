@@ -22,7 +22,7 @@
         </tr>
     </ng-template>
     <ng-template #body let-row>
-        <tr app-entry todo-item [todoItem]="row"></tr>
+        <tr app-entry todo-item [todoItem]="row" (onDelete)="onItemDelete($event)" (onModify)="onItemListModify()"></tr>
     </ng-template>
 </p-table>
 </main>

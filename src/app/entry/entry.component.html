@@ -1,17 +1,17 @@
 <td>
     <p-button (onClick)="op.toggle($event)" [icon]="'pi pi-' + todoToIcon(todoItem.state)" outlined></p-button>
     <p-popover #op>
-        <p-listbox [options]="todoStates" class="w-full md:w-56" value="todo">
+        <p-listbox [options]="todoStates" class="w-full md:w-56 !border-none !p-0" value="todo" (onChange)="stateEditDone(op.hide, $event)">
             <ng-template let-item #item>
                 <div class="flex items-center gap-2">
                     <span [class]="'pi pi-' + todoToIcon(item)"></span>
-                    <span>{{ capitalize(item) }}</span>
+                    <span value="item"> {{ capitalize(item) }}</span>
                 </div>
             </ng-template>
         </p-listbox>
     </p-popover>
     <!--
-    <p-select  [options]="todoStates" (onChange)="changeTodoState(row.no, $event)" class="w-min">
+    <p-select  [options]="todoStates" class="w-min">
         <ng-template #selectedItem let-selectedOption>
             <div class="flex items-center gap-2" *ngIf="selectedOption">
                 <span [class]="'pi pi-' + todoToIcon(selectedOption)" style="font-size: 1rem;"></span>
@@ -33,10 +33,10 @@
         <ng-template #display>
             <span>{{ todoItem.name }}</span>
         </ng-template>
-        <ng-template #content>
+        <ng-template #content let-closeCallback="closeCallback">
             <div class="flex gap-2 items-center justify-center">
-                <input pInputText autocomplete="off" [value]="todoItem.name" fluid />
-                <p-button icon="pi pi-check" severity="success" />
+                <input pInputText autocomplete="off" [value]="todoItem.name" (input)="todoItem.name = $event.target['value']" fluid />
+                <p-button icon="pi pi-check" severity="success" (onClick)="textEditDone(closeCallback, $event)" />
             </div>
         </ng-template>
     </p-inplace>

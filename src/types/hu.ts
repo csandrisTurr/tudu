@@ -11,7 +11,7 @@ export interface TodoItem {
 }
 
 export const todoStates = [
-    TodoState.Todo,
-    TodoState.Doing,
-    TodoState.Done,
+  TodoState.Todo,
+  TodoState.Doing,
+  TodoState.Done,
 ];

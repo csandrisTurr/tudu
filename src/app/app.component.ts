@@ -38,6 +38,10 @@ export class AppComponent {
   list: TodoItem[] = [];
   lastId = 0;
 
+  ngOnInit() {
+    this.list = JSON.parse(localStorage.getItem('todo')) || [];
+  }
+
   addItemButton() {
     this.list.push({
       no: this.lastId + 1,
@@ -46,9 +50,15 @@ export class AppComponent {
     });
 
     this.lastId++;
+    this.onItemListModify();
   }
 
-  changeTodoState(no: number, event: any) {
+  onItemDelete(event) {
+    this.list = this.list.filter(x => x.no != event);
+    this.onItemListModify();
+  }
 
+  onItemListModify() {
+    localStorage.setItem('todo', JSON.stringify(this.list));
   }  
 }
