@@ -11,6 +11,9 @@ import { ListboxModule } from 'primeng/listbox';
 import { SelectModule } from 'primeng/select';
 import { TodoItem, TodoState } from '../types/hu';
 import { EntryComponent } from './entry/entry.component';
+import { Toolbar } from 'primeng/toolbar';
+import { IconField } from 'primeng/iconfield';
+import { InputIcon } from 'primeng/inputicon';
 // import { Toast } from 'primeng/toast';
 
 @Component({
@@ -28,6 +31,9 @@ import { EntryComponent } from './entry/entry.component';
     ListboxModule,
     SelectModule,
     EntryComponent,
+    Toolbar,
+    IconField,
+    InputIcon,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
@@ -37,9 +43,14 @@ export class AppComponent {
   newItemName?: string;
   list: TodoItem[] = [];
   lastId = 0;
+  darkTheme: boolean;
 
   ngOnInit() {
     this.list = JSON.parse(localStorage.getItem('todo')) || [];
+    this.darkTheme = JSON.parse(localStorage.getItem('darkTheme')) || false;
+
+    if (this.darkTheme) 
+      document.body.classList.toggle("invert");
   }
 
   addItemButton() {
@@ -60,5 +71,10 @@ export class AppComponent {
 
   onItemListModify() {
     localStorage.setItem('todo', JSON.stringify(this.list));
-  }  
+  } 
+
+  toggleInvert() {
+    localStorage.setItem('darkTheme', JSON.stringify(!this.darkTheme));
+    document.body.classList.toggle("invert");
+  }
 }
