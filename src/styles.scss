@@ -5,8 +5,8 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-    @apply bg-zinc-50;
+body:not(.invert) {
+  @apply bg-zinc-50;
 }
 
 body.invert::before {
@@ -16,13 +16,12 @@ body.invert::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: white;
   mix-blend-mode: difference;
   pointer-events: none;
   z-index: 1000;
 }
 
 .main {
-    font-family: "Inter", sans-serif;
-    @apply text-sm;
+  font-family: "Inter", sans-serif;
+  @apply text-sm;
 }
