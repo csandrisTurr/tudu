@@ -1,5 +1,5 @@
 <td>
-    <p-button (onClick)="op.toggle($event)" [icon]="'pi pi-' + todoToIcon(todoItem.state)" outlined></p-button>
+    <p-button (onClick)="op.toggle($event)" [icon]="'pi pi-' + todoToIcon(todoItem.state)" severity="secondary"></p-button>
     <p-popover #op>
         <p-listbox [options]="todoStates" class="w-full md:w-56 !border-none !p-0" value="todo" (onChange)="stateEditDone(op.hide, $event)">
             <ng-template let-item #item>
