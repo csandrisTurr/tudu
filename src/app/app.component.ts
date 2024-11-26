@@ -15,6 +15,7 @@ import { Toolbar } from 'primeng/toolbar';
 import { IconField } from 'primeng/iconfield';
 import { InputIcon } from 'primeng/inputicon';
 import { Card } from 'primeng/card';
+import { v4 as uuidv4 } from 'uuid';
 // import { Toast } from 'primeng/toast';
 
 @Component({
@@ -44,7 +45,6 @@ export class AppComponent {
   title = 'todo';
   newItemName?: string;
   list: TodoItem[] = [];
-  lastId = 0;
   darkTheme: boolean;
 
   ngOnInit() {
@@ -57,18 +57,17 @@ export class AppComponent {
 
   addItemButton() {
     this.list.push({
-      no: this.lastId + 1,
+      id: uuidv4(),
       state: TodoState.Todo,
       name: this.newItemName!,
       favorite: false,
     });
 
-    this.lastId++;
     this.onItemListModify();
   }
 
   onItemDelete(event) {
-    this.list = this.list.filter(x => x.no != event);
+    this.list = this.list.filter(x => x.id != event);
     this.onItemListModify();
   }
 

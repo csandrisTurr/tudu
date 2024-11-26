@@ -44,6 +44,6 @@ export class EntryComponent {
     this.onModify.emit(this.todoItem);
   }
 
-  onDelete = output<number>();
+  onDelete = output<string>();
   onModify = output<TodoItem>();
 }

@@ -5,7 +5,7 @@ export enum TodoState {
 }
 
 export interface TodoItem {
-  no: number;
+  id: string;
   state: TodoState;
   name: string;
   favorite: boolean;
