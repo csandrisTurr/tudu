@@ -60,6 +60,7 @@ export class AppComponent {
       no: this.lastId + 1,
       state: TodoState.Todo,
       name: this.newItemName!,
+      favorite: false,
     });
 
     this.lastId++;

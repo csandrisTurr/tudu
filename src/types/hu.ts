@@ -8,6 +8,7 @@ export interface TodoItem {
   no: number;
   state: TodoState;
   name: string;
+  favorite: boolean;
 }
 
 export const todoStates = [
