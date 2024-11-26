@@ -1,10 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, model } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { CommonModule } from '@angular/common';
 import { TableModule } from 'primeng/table';
 import { InputTextModule } from 'primeng/inputtext';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgModel } from '@angular/forms';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { PopoverModule } from 'primeng/popover';
 import { ListboxModule } from 'primeng/listbox';
@@ -15,6 +15,7 @@ import { Toolbar } from 'primeng/toolbar';
 import { IconField } from 'primeng/iconfield';
 import { InputIcon } from 'primeng/inputicon';
 import { Card } from 'primeng/card';
+import { ToggleButton } from 'primeng/togglebutton';
 import { v4 as uuidv4 } from 'uuid';
 // import { Toast } from 'primeng/toast';
 
@@ -37,6 +38,7 @@ import { v4 as uuidv4 } from 'uuid';
     IconField,
     InputIcon,
     Card,
+    ToggleButton,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
@@ -46,6 +48,7 @@ export class AppComponent {
   newItemName?: string;
   list: TodoItem[] = [];
   darkTheme: boolean;
+  favoritesOnly = model<boolean>();
 
   ngOnInit() {
     this.list = JSON.parse(localStorage.getItem('todo')) || [];

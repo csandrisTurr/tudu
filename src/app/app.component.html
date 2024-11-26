@@ -15,7 +15,10 @@
                     <p-inputicon styleClass="pi pi-search" />
                     <input type="text" pInputText placeholder="Search" />
                 </p-iconfield>
-                <p-button icon="pi pi-star" severity="secondary" />
+                <!-- 
+                    <p-button icon="pi pi-star" severity="secondary" />
+                -->
+                <p-togglebutton [(ngModel)]="favoritesOnly" [onLabel]="'Filtered'" [offLabel]="'Not filtered'" onIcon="pi pi-star-fill" offIcon="pi pi-star" styleClass="w-36" ariaLabel="bekakiltam" />
             </div>
         </ng-template>
         <ng-template #end>
