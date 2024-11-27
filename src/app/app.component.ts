@@ -51,16 +51,13 @@ export class AppComponent {
   darkTheme: boolean;
   favoritesOnly = model<boolean>(false);
   filter = model<string>('');
-  fasz = new Observable(() => {
-
-  })
 
   ngOnInit() {
     this._list = JSON.parse(localStorage.getItem('todo')) || [];
     this.darkTheme = JSON.parse(localStorage.getItem('darkTheme')) || false;
 
     if (this.darkTheme) 
-      document.body.classList.toggle("invert");
+      document.getElementsByTagName('html')[0].classList.toggle("dark");
   }
 
   addItemButton() {
@@ -85,12 +82,10 @@ export class AppComponent {
 
   toggleInvert() {
     localStorage.setItem('darkTheme', JSON.stringify(!this.darkTheme));
-    document.body.classList.toggle("invert");
+    document.getElementsByTagName('html')[0].classList.toggle("dark");
   }
 
   get list() {
-    console.log(this.filter())
-
     const treshold = 0.3;
 
     return this._list.filter(x => 
