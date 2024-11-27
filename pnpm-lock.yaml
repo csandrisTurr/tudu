@@ -41,6 +41,9 @@ dependencies:
   rxjs:
     specifier: ~7.8.0
     version: 7.8.1
+  string-similarity-js:
+    specifier: ^2.1.4
+    version: 2.1.4
   tslib:
     specifier: ^2.3.0
     version: 2.8.1
@@ -7450,6 +7453,10 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: true
+
+  /string-similarity-js@2.1.4:
+    resolution: {integrity: sha512-uApODZNjCHGYROzDSAdCmAHf60L/pMDHnP/yk6TAbvGg7JSPZlSto/ceCI7hZEqzc53/juU2aOJFkM2yUVTMTA==}
+    dev: false
 
   /string-width@4.2.3:
     resolution: {integrity: sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g==}

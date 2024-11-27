@@ -17,6 +17,8 @@ import { InputIcon } from 'primeng/inputicon';
 import { Card } from 'primeng/card';
 import { ToggleButton } from 'primeng/togglebutton';
 import { v4 as uuidv4 } from 'uuid';
+import { stringSimilarity } from "string-similarity-js";
+import { Observable } from 'rxjs';
 // import { Toast } from 'primeng/toast';
 
 @Component({
@@ -45,13 +47,16 @@ import { v4 as uuidv4 } from 'uuid';
 })
 export class AppComponent {
   title = 'todo';
-  newItemName?: string;
-  list: TodoItem[] = [];
+  _list: TodoItem[] = [];
   darkTheme: boolean;
-  favoritesOnly = model<boolean>();
+  favoritesOnly = model<boolean>(false);
+  filter = model<string>('');
+  fasz = new Observable(() => {
+
+  })
 
   ngOnInit() {
-    this.list = JSON.parse(localStorage.getItem('todo')) || [];
+    this._list = JSON.parse(localStorage.getItem('todo')) || [];
     this.darkTheme = JSON.parse(localStorage.getItem('darkTheme')) || false;
 
     if (this.darkTheme) 
@@ -59,10 +64,10 @@ export class AppComponent {
   }
 
   addItemButton() {
-    this.list.push({
+    this._list.push({
       id: uuidv4(),
       state: TodoState.Todo,
-      name: this.newItemName!,
+      name: '',
       favorite: false,
     });
 
@@ -70,16 +75,27 @@ export class AppComponent {
   }
 
   onItemDelete(event) {
-    this.list = this.list.filter(x => x.id != event);
+    this._list = this._list.filter(x => x.id != event);
     this.onItemListModify();
   }
 
   onItemListModify() {
-    localStorage.setItem('todo', JSON.stringify(this.list));
+    localStorage.setItem('todo', JSON.stringify(this._list));
   } 
 
   toggleInvert() {
     localStorage.setItem('darkTheme', JSON.stringify(!this.darkTheme));
     document.body.classList.toggle("invert");
+  }
+
+  get list() {
+    console.log(this.filter())
+
+    const treshold = 0.3;
+
+    return this._list.filter(x => 
+      this.favoritesOnly() ? x.favorite : true
+      && this.filter().length != 0 ? stringSimilarity(x.name, this.filter()) > treshold : true
+    );
   }
 }
